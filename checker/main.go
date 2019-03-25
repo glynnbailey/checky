@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	fmt.Println("Checker service starting")
 	// setup DB tables if they dont exist
 	dbInit()
 	fmt.Println("DB initialized")
