@@ -7,8 +7,15 @@ import (
 	"net/http"
 )
 
+// TODO auth
+// TODO move all DB access to the API service
+
 func main() {
 	fmt.Println("API Service Starting")
+
+	// setup DB tables if they dont exist
+	dbInit()
+	fmt.Println("DB initialized")
 
 	http.HandleFunc("/", rootHandler)
 	http.HandleFunc("/favicon.ico", faviconHandler)

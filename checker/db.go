@@ -9,19 +9,6 @@ import (
 
 const connStr = "postgres://checky:checky@postgres/checky?sslmode=disable"
 
-func dbInit() {
-	db, err := sql.Open("postgres", connStr)
-	if err != nil {
-		log.Fatal("Cannot connect to DB:", err)
-	}
-	defer db.Close()
-
-	_, err = db.Exec("CREATE TABLE endpoints (name VARCHAR(50), url VARCHAR(255), status INTEGER)")
-	if err != nil {
-		log.Println("Error creating endpoints table:", err)
-	}
-}
-
 func dbSelectAllEndpoints() []endpoint {
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
