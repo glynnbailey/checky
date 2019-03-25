@@ -1,14 +1,30 @@
 version: '3.7'
 
-services:
-  api:
-    build: ./api/
-    restart: always
-
-  web:
-    build: ./web/
-    restart: always
-
+networks:
   postgres:
-    image: postgres:11.2-alpine  
+    external: true
+
+services:
+  checker:
+    build: ./checker/
     restart: always
+    networks:
+      - postgres
+
+#  api:
+#    build: ./api/
+#    restart: always
+#    ports:
+#      - "81:80"
+#    depends_on:
+#      - checker
+#      - postgres
+
+#  web:
+#    build: ./web/
+#    restart: always
+#    ports:
+#      - "80:80"
+#    depends_on:
+#      - checker
+#      - postgres
