@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  api:
+    build: ./api/
+    restart: always
+
+  web:
+    build: ./web/
+    restart: always
+
+  postgres:
+    image: postgres:11.2-alpine  
+    restart: always
