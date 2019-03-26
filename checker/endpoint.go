@@ -6,9 +6,10 @@ import (
 )
 
 type endpoint struct {
-	Name   string
-	URL    string
-	Status int
+	ID     int    `json: "id"`
+	Name   string `json: "name"`
+	URL    string `json: "url"`
+	Status int    `json: "status"`
 }
 
 func (e *endpoint) checkStatus() {
@@ -17,5 +18,6 @@ func (e *endpoint) checkStatus() {
 		log.Println("Error connecting to URL:", err)
 	}
 	defer resp.Body.Close()
-	e.Status = resp.StatusCode
+
+	http.Post("http://api/v1/endpoint/", "application/json")
 }

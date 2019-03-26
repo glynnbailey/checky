@@ -1,7 +1,9 @@
 package main
 
 type endpoint struct {
-	Name   string `json:"name"`
-	URL    string `json:"url"`
-	Status int    `json:"status"`
+	ID           int    `json:"name"`
+	Name         string `json:"name"`
+	URL          string `json:"url"`
+	Status       int    `json:"status"`
+	ResponseTime int    `json: "responsetime"`
 }

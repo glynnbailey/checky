@@ -5,11 +5,11 @@ networks:
     external: true
 
 services:
-  checker:
-    build: ./checker/
-    restart: always
-    networks:
-      - postgres
+#  checker:
+#    build: ./checker/
+#    restart: always
+#    networks:
+#      - postgres
 
   api:
     build: ./api/

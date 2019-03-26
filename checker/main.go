@@ -10,13 +10,12 @@ func main() {
 
 	for {
 		fmt.Println("Checking endpoint status")
-		// collect urls from DB
-		endpoints := dbSelectAllEndpoints()
+		// collect urls from API
+		endpoints := apiSelectAllEndpoints()
 
 		// check urls are available and update the DB data
 		for _, e := range endpoints {
 			e.checkStatus()
-			e.dbUpdateEndpointStatus()
 		}
 
 		// sleep
