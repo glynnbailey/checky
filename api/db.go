@@ -46,7 +46,7 @@ func dbSelectAllEndpoints() []byte {
 	var endpoints []endpoint
 	for rows.Next() {
 		var e endpoint
-		err = rows.Scan(&e.Name, &e.URL, &e.Status)
+		err = rows.Scan(&e.ID, &e.Name, &e.URL, &e.Status, &e.ResponseTime)
 		if err != nil {
 			log.Println("Error scanning endpoint rows:", err)
 			return nil
@@ -64,7 +64,7 @@ func dbSelectAllEndpoints() []byte {
 	return endpointsJSON
 }
 
-func dbSelectSingleEndpoint(name string) []byte {
+func dbSelectSingleEndpoint(id int) []byte {
 	// Connect to DB
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
@@ -74,7 +74,7 @@ func dbSelectSingleEndpoint(name string) []byte {
 	defer db.Close()
 
 	// run query
-	row := db.QueryRow("SELECT * FROM endpoints WHERE id = $1", name)
+	row := db.QueryRow("SELECT * FROM endpoints WHERE id = $1", id)
 	if err != nil {
 		log.Println("Error selecting single row from endpoints table:", err)
 		return nil
@@ -82,7 +82,7 @@ func dbSelectSingleEndpoint(name string) []byte {
 
 	// parse SQL row
 	var e endpoint
-	row.Scan(&e.Name, &e.URL, &e.Status)
+	row.Scan(&e.ID, &e.Name, &e.URL, &e.Status, &e.ResponseTime)
 
 	// marshal JSON
 	eJSON, err := json.Marshal(e)
@@ -92,4 +92,21 @@ func dbSelectSingleEndpoint(name string) []byte {
 	}
 
 	return eJSON
+}
+
+func dbUpdateEndpoint(e endpoint) {
+	// Connect to DB
+	db, err := sql.Open("postgres", connStr)
+	if err != nil {
+		log.Println("Cannot connect to DB:", err)
+		return
+	}
+	defer db.Close()
+
+	// run query
+	_, err = db.Exec("UPDATE endpoints SET status = $1, responsetime = $2 WHERE id = $3", e.Status, e.ResponseTime, e.ID)
+	if err != nil {
+		log.Println("Error updating endpoints table:", err)
+		return
+	}
 }
