@@ -13,11 +13,13 @@ services:
     networks:
       - postgres
 
-#  checker:
-#    build: ./checker/
-#    restart: always
-#    networks:
-#      - postgres
+  checker:
+    build: ./checker/
+    restart: always
+    networks:
+      - postgres
+    depends_on:
+      - api
 
 #  web:
 #    build: ./web/
@@ -25,4 +27,6 @@ services:
 #    ports:
 #      - "80:80"
 #    depends_on:
-#      - checker
+#      - api
+
+# TODO postgres container

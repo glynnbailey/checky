@@ -35,7 +35,7 @@ func dbSelectAllEndpoints() []byte {
 	defer db.Close()
 
 	// run query
-	rows, err := db.Query("SELECT * FROM endpoints")
+	rows, err := db.Query("SELECT * FROM endpoints ORDER BY id")
 	if err != nil {
 		log.Println("Error selecting all rows endpoints table:", err)
 		return nil

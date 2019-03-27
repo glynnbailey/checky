@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -28,7 +27,6 @@ func handlerV1Endpoint(w http.ResponseWriter, r *http.Request) {
 
 func handlerV1EndpointGET(w http.ResponseWriter, r *http.Request) {
 	id := 0
-	fmt.Println(r.RequestURI)
 	id, _ = strconv.Atoi(r.RequestURI[len("/v1/endpoint/"):]) // ignoring error, in the event of an error empty JSON is sent
 	endpointJSON := dbSelectSingleEndpoint(id)
 	w.Write(endpointJSON)

@@ -15,7 +15,7 @@ func main() {
 
 		// check urls are available and update the DB data
 		for _, e := range endpoints {
-			e.checkStatus()
+			e.update()
 		}
 
 		// sleep

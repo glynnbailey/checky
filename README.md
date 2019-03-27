@@ -1,3 +1,3 @@
 # checky
 
-A HTTP endpoint monitor
+A HTTP endpoint status and response time monitor

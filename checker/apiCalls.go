@@ -19,12 +19,10 @@ func apiSelectAllEndpoints() []endpoint {
 	}
 
 	var endpoints []endpoint
-	err = json.Unmarshal(body, endpoints)
+	err = json.Unmarshal(body, &endpoints)
 	if err != nil {
 		log.Println("Error unmarshalling JSON:", err)
 	}
-
-	log.Println()
 
 	return endpoints
 }
