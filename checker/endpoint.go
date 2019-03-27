@@ -10,18 +10,18 @@ import (
 )
 
 type endpoint struct {
-	ID           int    `json:"id,omitempty"`
-	Name         string `json:"name,omitempty"`
-	URL          string `json:"url,omitempty"`
-	Status       int    `json:"status,omitempty"`
-	ResponseTime int64  `json:"responsetime,omitempty"`
+	ID           int           `json:"id,omitempty"`
+	Name         string        `json:"name,omitempty"`
+	URL          string        `json:"url,omitempty"`
+	Status       int           `json:"status,omitempty"`
+	ResponseTime time.Duration `json:"responsetime,omitempty"`
 }
 
 func (e *endpoint) update() {
 	// GET request to check its availability
 	startTime := time.Now()
 	resp, err := http.Get(e.URL)
-	elapsedTime := time.Since(startTime).Nanoseconds()
+	elapsedTime := time.Since(startTime)
 	if err != nil {
 		log.Println("Error connecting to URL:", err)
 	}
