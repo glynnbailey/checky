@@ -1,6 +1,7 @@
 version: '3.7'
 
 networks:
+  checky:
   postgres:
     external: true
 
@@ -8,25 +9,28 @@ services:
   api:
     build: ./api/
     restart: always
+    networks:
+      - checky
+      - postgres
     ports:
       - "81:80"
-    networks:
-      - postgres
 
   checker:
     build: ./checker/
     restart: always
-    networks:
-      - postgres
     depends_on:
       - api
+    networks:
+      - checky
 
-#  web:
-#    build: ./web/
-#    restart: always
-#    ports:
-#      - "80:80"
-#    depends_on:
-#      - api
+  web:
+    build: ./web/
+    restart: always
+    networks:
+      - checky
+    ports:
+      - "80:80"
+    depends_on:
+      - api
 
 # TODO postgres container

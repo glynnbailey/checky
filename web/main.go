@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	fmt.Println("API Service Starting")
+	fmt.Println("Web Service Starting")
 
-	http.HandleFunc("/", rootHandler)
-	http.HandleFunc("/favicon.ico", faviconHandler)
+	http.HandleFunc("/", handlerRoot)
+	http.HandleFunc("/favicon.ico", handlerFavicon)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 
 	http.ListenAndServe(":80", nil)

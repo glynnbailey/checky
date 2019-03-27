@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	time.Sleep(time.Second) // wait for API to come up
 	fmt.Println("Checker service starting")
 
 	for {
