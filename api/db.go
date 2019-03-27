@@ -94,7 +94,7 @@ func dbSelectSingleEndpoint(id int) []byte {
 	return eJSON
 }
 
-func dbUpdateEndpoint(e endpoint) {
+func dbUpdateEndpoint(id string, e endpoint) {
 	// Connect to DB
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
@@ -104,7 +104,7 @@ func dbUpdateEndpoint(e endpoint) {
 	defer db.Close()
 
 	// run query
-	_, err = db.Exec("UPDATE endpoints SET status = $1, responsetime = $2 WHERE id = $3", e.Status, e.ResponseTime, e.ID)
+	_, err = db.Exec("UPDATE endpoints SET name = $1, url = $2, status = $3, responsetime = $4 WHERE id = $5", e.Name, e.URL, e.Status, e.ResponseTime, id)
 	if err != nil {
 		log.Println("Error updating endpoints table:", err)
 		return

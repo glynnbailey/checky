@@ -14,10 +14,10 @@ func main() {
 	// setup DB tables if they dont exist
 	dbInit()
 
-	http.HandleFunc("/", rootHandler)
-	http.HandleFunc("/favicon.ico", faviconHandler)
-	http.HandleFunc("/v1/", v1Handler)
-	http.HandleFunc("/v1/endpoint/", v1EndpointHandler)
+	http.HandleFunc("/", handlerRoot)
+	http.HandleFunc("/favicon.ico", handlerFavicon)
+	http.HandleFunc("/v1/", handlerV1)
+	http.HandleFunc("/v1/endpoint/", handlerV1Endpoint)
 
 	http.ListenAndServe(":80", nil)
 }
