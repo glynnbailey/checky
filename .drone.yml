@@ -44,7 +44,28 @@ steps:
       from_secret: DOCKER_HUB_USERNAME
     password:
       from_secret: DOCKER_HUB_PASSWORD
-      
     repo: glynnbailey/checky-api
     tags: latest
     dockerfile: api/Dockerfile
+
+- name: publish-checker
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: DOCKER_HUB_USERNAME
+    password:
+      from_secret: DOCKER_HUB_PASSWORD
+    repo: glynnbailey/checky-checker
+    tags: latest
+    dockerfile: checker/Dockerfile
+
+- name: publish-web
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: DOCKER_HUB_USERNAME
+    password:
+      from_secret: DOCKER_HUB_PASSWORD
+    repo: glynnbailey/checky-web
+    tags: latest
+    dockerfile: web/Dockerfile
