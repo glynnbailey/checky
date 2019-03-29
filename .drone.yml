@@ -13,8 +13,6 @@ steps:
 - name: go-api
   image: golang
   pull: always
-  environment:
-  - PATH: $PATH:/go
   commands:
   - cd api
   - go get
