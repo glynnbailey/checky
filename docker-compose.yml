@@ -42,4 +42,4 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.port=80"
-        - "traefik.frontend.rule=Host:traefik.dataslave.net"
+        - "traefik.frontend.rule=Host:checky.dataslave.net"
