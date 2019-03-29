@@ -10,6 +10,13 @@ workspace:
   path: src/github.com/glynnbailey/checky
 
 steps:
+- name: pwd
+  image: alpine
+  commands:
+  - pwd
+  - ls
+
+
 #- name: go-api
 #  image: golang
 #  pull: always
