@@ -9,7 +9,7 @@ workspace:
   base: /go
   path: src/github.com/glynnbailey/checky
 
-#steps:
+steps:
 #- name: go-api
 #  image: golang
 #  pull: always
