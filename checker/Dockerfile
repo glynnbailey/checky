@@ -2,9 +2,8 @@ FROM golang:1.12.1
 
 WORKDIR /go/src/app
 COPY . .
-WORKDIR /go/src/app/checker
 
 RUN go get -d -v ./...
 RUN go install -v ./...
 
-CMD ["checker"]
+CMD ["app"]

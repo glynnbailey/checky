@@ -9,33 +9,33 @@ workspace:
   base: /go
   path: src/github.com/glynnbailey/checky
 
-steps:
-- name: go-api
-  image: golang
-  pull: always
-  commands:
-  - cd api
-  - go get -v
-  - go build -v
-  - go test -v
+#steps:
+#- name: go-api
+#  image: golang
+#  pull: always
+#  commands:
+#  - cd api
+#  - go get -v
+#  - go build -v
+#  - go test -v
 
-- name: go-checker
-  image: golang
-  pull: always
-  commands:
-  - cd checker
-  - go get -v
-  - go build -v
-  - go test -v
+#- name: go-checker
+#  image: golang
+#  pull: always
+#  commands:
+#  - cd checker
+#  - go get -v
+#  - go build -v
+#  - go test -v
 
-- name: go-web
-  image: golang
-  pull: always
-  commands:
-  - cd web
-  - go get -v
-  - go build -v
-  - go test -v
+#- name: go-web
+#  image: golang
+#  pull: always
+#  commands:
+#  - cd web
+#  - go get -v
+#  - go build -v
+#  - go test -v
 
 - name: publish-api
   image: plugins/docker
@@ -47,7 +47,7 @@ steps:
       from_secret: DOCKER_HUB_PASSWORD
     repo: glynnbailey/checky-api
     tags: latest
-    dockerfile: api/Dockerfile
+    context: api/.
 
 - name: publish-checker
   image: plugins/docker
@@ -59,7 +59,7 @@ steps:
       from_secret: DOCKER_HUB_PASSWORD
     repo: glynnbailey/checky-checker
     tags: latest
-    dockerfile: checker/Dockerfile
+    context: checker/.
 
 - name: publish-web
   image: plugins/docker
@@ -71,4 +71,4 @@ steps:
       from_secret: DOCKER_HUB_PASSWORD
     repo: glynnbailey/checky-web
     tags: latest
-    dockerfile: web/Dockerfile
+    context: web/.

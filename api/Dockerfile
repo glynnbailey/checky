@@ -2,11 +2,10 @@ FROM golang:1.12.1
 
 WORKDIR /go/src/app
 COPY . .
-WORKDIR /go/src/app/api
 
 RUN go get -d -v ./...
 RUN go install -v ./...
 
 EXPOSE 80
 
-CMD ["api"]
+CMD ["app"]
