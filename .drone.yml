@@ -11,6 +11,7 @@ steps:
   pull: always
   commands:
   - cd api
+  - go get
   - go build
   - go test
 
@@ -19,6 +20,7 @@ steps:
   pull: always
   commands:
   - cd checker
+  - go get
   - go build
   - go test
 
@@ -27,5 +29,6 @@ steps:
   pull: always
   commands:
   - cd web
+  - go get
   - go build
   - go test
