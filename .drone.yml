@@ -5,10 +5,16 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /go
+  path: src/github.com/glynnbailey/checky
+
 steps:
 - name: go-api
-  image: golang:latest
+  image: golang
   pull: always
+  environment:
+  - PATH: $PATH:/go
   commands:
   - cd api
   - go get
@@ -16,7 +22,7 @@ steps:
   - go test
 
 - name: go-checker
-  image: golang:latest
+  image: golang
   pull: always
   commands:
   - cd checker
@@ -25,7 +31,7 @@ steps:
   - go test
 
 - name: go-web
-  image: golang:latest
+  image: golang
   pull: always
   commands:
   - cd web
