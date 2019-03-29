@@ -15,7 +15,8 @@ steps:
   commands:
   - pwd
   - ls
-
+  - cd api
+  - ls
 
 #- name: go-api
 #  image: golang
@@ -54,7 +55,7 @@ steps:
       from_secret: DOCKER_HUB_PASSWORD
     repo: glynnbailey/checky-api
     tags: latest
-    context: api/.
+    context: /go/src/github.com/glynnbailey/checky/api/.
 
 - name: publish-checker
   image: plugins/docker
@@ -66,7 +67,7 @@ steps:
       from_secret: DOCKER_HUB_PASSWORD
     repo: glynnbailey/checky-checker
     tags: latest
-    context: checker/.
+    context: /go/src/github.com/glynnbailey/checky/checker/.
 
 - name: publish-web
   image: plugins/docker
@@ -78,4 +79,4 @@ steps:
       from_secret: DOCKER_HUB_PASSWORD
     repo: glynnbailey/checky-web
     tags: latest
-    context: web/.
+    context: /go/src/github.com/glynnbailey/checky/web/.
