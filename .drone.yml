@@ -1,0 +1,31 @@
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: go-api
+  image: golang:latest
+  pull: always
+  commands:
+  - cd api
+  - go build
+  - go test
+
+- name: go-checker
+  image: golang:latest
+  pull: always
+  commands:
+  - cd checker
+  - go build
+  - go test
+
+- name: go-web
+  image: golang:latest
+  pull: always
+  commands:
+  - cd web
+  - go build
+  - go test
