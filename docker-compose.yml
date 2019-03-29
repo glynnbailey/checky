@@ -4,12 +4,13 @@ networks:
   checky:
   postgres:
     external: true
+  web:
+    external: true
 
 services:
   api:
     build: ./api/
     image: glynnbailey/checky-api
-    restart: always
     networks:
       - checky
       - postgres
@@ -22,7 +23,6 @@ services:
   checker:
     build: ./checker/
     image: glynnbailey/checky-checker
-    restart: always
     depends_on:
       - api
     networks:
@@ -31,11 +31,11 @@ services:
   web:
     build: ./web/
     image: glynnbailey/checky-web
-    restart: always
     networks:
       - checky
-    ports:
-      - "80:80"
+      - web
+#    ports:
+#      - "80:80"
     depends_on:
       - api
     deploy:

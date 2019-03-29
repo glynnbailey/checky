@@ -1,6 +1,6 @@
 FROM golang:1.12.1
 
-WORKDIR /go/src/app
+WORKDIR /go/src/github.com/glynnbailey/checky
 COPY . .
 
 RUN go get -d -v ./...
