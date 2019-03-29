@@ -9,41 +9,35 @@ workspace:
   base: /go
   path: src/github.com/glynnbailey/checky
 
+
 steps:
-- name: pwd
-  image: alpine
+
+- name: test-api
+  image: golang
+  pull: always
   commands:
-  - pwd
-  - ls
   - cd api
-  - ls
+  - go get -v
+  - go build -v
+  - go test -v
 
-#- name: go-api
-#  image: golang
-#  pull: always
-#  commands:
-#  - cd api
-#  - go get -v
-#  - go build -v
-#  - go test -v
+- name: test-checker
+  image: golang
+  pull: always
+  commands:
+  - cd checker
+  - go get -v
+  - go build -v
+  - go test -v
 
-#- name: go-checker
-#  image: golang
-#  pull: always
-#  commands:
-#  - cd checker
-#  - go get -v
-#  - go build -v
-#  - go test -v
-
-#- name: go-web
-#  image: golang
-#  pull: always
-#  commands:
-#  - cd web
-#  - go get -v
-#  - go build -v
-#  - go test -v
+- name: test-web
+  image: golang
+  pull: always
+  commands:
+  - cd web
+  - go get -v
+  - go build -v
+  - go test -v
 
 - name: publish-api
   image: plugins/docker
