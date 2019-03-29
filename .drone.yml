@@ -36,3 +36,15 @@ steps:
   - go get -v
   - go build -v
   - go test -v
+
+- name: publish-api
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: DOCKER_HUB_USERNAME
+    password:
+      from_secret: DOCKER_HUB_PASSWORD
+      
+    repo: glynnbailey/checky-api
+    tags: latest
+    dockerfile: api/Dockerfile
