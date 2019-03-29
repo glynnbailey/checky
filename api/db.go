@@ -5,14 +5,24 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"os"
 
 	_ "github.com/lib/pq"
 )
 
-const connStr = "postgres://checky:checky@postgres/checky?sslmode=disable"
+func getDbConn() string {
+	var connStr string
+	connStr = os.Getenv("POSTGRES_CONNECTION")
+
+	if connStr == "" {
+		log.Fatal("DB connection not configured")
+	}
+
+	return connStr
+}
 
 func dbInit() {
-	db, err := sql.Open("postgres", connStr)
+	db, err := sql.Open("postgres", getDbConn())
 	if err != nil {
 		log.Fatal("Cannot connect to DB:", err)
 	}
@@ -27,7 +37,7 @@ func dbInit() {
 
 func dbSelectAllEndpoints() []byte {
 	// connect to DB
-	db, err := sql.Open("postgres", connStr)
+	db, err := sql.Open("postgres", getDbConn())
 	if err != nil {
 		log.Println("Cannot connect to DB:", err)
 		return nil
@@ -66,7 +76,7 @@ func dbSelectAllEndpoints() []byte {
 
 func dbSelectSingleEndpoint(id int) []byte {
 	// Connect to DB
-	db, err := sql.Open("postgres", connStr)
+	db, err := sql.Open("postgres", getDbConn())
 	if err != nil {
 		log.Println("Cannot connect to DB:", err)
 		return nil
@@ -96,7 +106,7 @@ func dbSelectSingleEndpoint(id int) []byte {
 
 func dbUpdateEndpoint(id string, e endpoint) {
 	// Connect to DB
-	db, err := sql.Open("postgres", connStr)
+	db, err := sql.Open("postgres", getDbConn())
 	if err != nil {
 		log.Println("Cannot connect to DB:", err)
 		return

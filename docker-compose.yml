@@ -13,8 +13,11 @@ services:
     networks:
       - checky
       - postgres
-    ports:
-      - "81:80"
+#    ports:
+#      - "81:80"
+    environment:
+      - POSTGRES_CONNECTION=postgres://checky:checky@postgres/checky?sslmode=disable
+
 
   checker:
     build: ./checker/
@@ -35,5 +38,8 @@ services:
       - "80:80"
     depends_on:
       - api
-
-# TODO postgres container
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.port=80"
+        - "traefik.frontend.rule=Host:traefik.dataslave.net"
