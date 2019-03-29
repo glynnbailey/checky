@@ -47,6 +47,7 @@ steps:
     repo: glynnbailey/checky-api
     tags: latest
     dockerfile: api/Dockerfile
+    detach: true
 
 - name: publish-checker
   image: plugins/docker
@@ -58,6 +59,7 @@ steps:
     repo: glynnbailey/checky-checker
     tags: latest
     dockerfile: checker/Dockerfile
+    detach: true
 
 - name: publish-web
   image: plugins/docker
@@ -69,3 +71,4 @@ steps:
     repo: glynnbailey/checky-web
     tags: latest
     dockerfile: web/Dockerfile
+    detach: true
