@@ -41,5 +41,5 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.port=80"
         - "traefik.frontend.rule=Host:checky.dataslave.net"
+        - "traefik.port=80"
