@@ -15,24 +15,24 @@ steps:
   pull: always
   commands:
   - cd api
-  - go get
-  - go build
-  - go test
+  - go get -v
+  - go build -v
+  - go test -v
 
 - name: go-checker
   image: golang
   pull: always
   commands:
   - cd checker
-  - go get
-  - go build
-  - go test
+  - go get -v
+  - go build -v
+  - go test -v
 
 - name: go-web
   image: golang
   pull: always
   commands:
   - cd web
-  - go get
-  - go build
-  - go test
+  - go get -v
+  - go build -v
+  - go test -v
