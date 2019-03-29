@@ -5,9 +5,9 @@ platform:
   os: linux
   arch: amd64
 
-#workspace:
-#  base: /go
-#  path: src/github.com/glynnbailey/checky
+workspace:
+  base: /go
+  path: src/github.com/glynnbailey/checky
 
 steps:
 - name: pwd
@@ -56,6 +56,7 @@ steps:
     repo: glynnbailey/checky-api
     tags: latest
     context: /go/src/github.com/glynnbailey/checky/api/.
+    dockerfile: /go/src/github.com/glynnbailey/checky/api/Dockerfile
 
 - name: publish-checker
   image: plugins/docker
@@ -68,6 +69,7 @@ steps:
     repo: glynnbailey/checky-checker
     tags: latest
     context: /go/src/github.com/glynnbailey/checky/checker/.
+    dockerfile: /go/src/github.com/glynnbailey/checky/checker/Dockerfile
 
 - name: publish-web
   image: plugins/docker
@@ -80,3 +82,5 @@ steps:
     repo: glynnbailey/checky-web
     tags: latest
     context: /go/src/github.com/glynnbailey/checky/web/.
+    dockerfile: /go/src/github.com/glynnbailey/checky/web/Dockerfile
+
