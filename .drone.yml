@@ -5,9 +5,9 @@ platform:
   os: linux
   arch: amd64
 
-workspace:
-  base: /go
-  path: src/github.com/glynnbailey/checky
+#workspace:
+#  base: /go
+#  path: src/github.com/glynnbailey/checky
 
 steps:
 - name: pwd
